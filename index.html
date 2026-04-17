@@ -31,6 +31,14 @@ body {
   font-weight: 300;
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
 }
 
 /* ── NOISE TEXTURE OVERLAY ── */
@@ -49,15 +57,20 @@ nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 48px;
   height: 68px;
   background: rgba(12,12,12,0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav-logo {
@@ -137,11 +150,20 @@ nav {
 /* ── HERO ── */
 .hero {
   min-height: 100vh;
-  padding: 68px 48px 0;
+  padding: 68px 0 0;
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Background glow blobs */
@@ -309,6 +331,7 @@ nav {
   overflow: hidden;
   white-space: nowrap;
   background: var(--bg2);
+  width: 100%;
 }
 .ticker-track {
   display: inline-flex;
@@ -331,8 +354,13 @@ nav {
 
 /* ── SECTION BASE ── */
 .section {
-  padding: 120px 48px;
+  padding: 120px 0;
   position: relative;
+}
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
 }
 
 .section-eyebrow {
@@ -378,7 +406,7 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: end;
-  margin-bottom: 64px;
+  margin-bottom: 40px;
 }
 
 .features-grid {
@@ -386,9 +414,10 @@ nav {
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--border);
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--border);
+  width: 100%;
 }
 .feature-card {
   background: var(--bg2);
@@ -434,16 +463,16 @@ nav {
 }
 .feature-title {
   font-family: 'Syne', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 10px;
-  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
 }
 .feature-text {
-  font-size: 13.5px;
+  font-size: 12.5px;
   color: var(--muted);
-  line-height: 1.65;
+  line-height: 1.6;
 }
 .feature-tags {
   display: flex;
@@ -480,7 +509,7 @@ nav {
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border);
-  max-width: 900px;
+  max-width: 860px;
   margin: 0 auto;
 }
 .phase {
@@ -586,6 +615,8 @@ nav {
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .tcard {
   background: var(--bg2);
@@ -717,10 +748,15 @@ a.kinfo-val:hover { color: var(--red); }
 /* ── CTA BAND ── */
 .cta-band {
   background: var(--red);
-  padding: 80px 48px;
+  padding: 80px 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+.cta-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
 }
 .cta-band::before {
   content: '';
@@ -763,7 +799,12 @@ a.kinfo-val:hover { color: var(--red); }
 footer {
   background: var(--bg);
   border-top: 1px solid var(--border);
-  padding: 60px 48px 40px;
+  padding: 60px 0 40px;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
 }
 .footer-top {
   display: grid;
@@ -867,32 +908,62 @@ footer {
 .reveal.visible { opacity: 1; transform: none; }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 680px) {
+  .features-grid { grid-template-columns: 1fr !important; }
+}
+
 @media (max-width: 900px) {
-  nav { padding: 0 20px; }
+  .nav-inner { padding: 0 20px; }
   .nav-center { display: none; }
   .nav-phone { display: none; }
-  .hero { padding: 68px 20px 0; }
+  .hero { padding: 68px 0 0; }
+  .hero-inner { padding: 0 20px; }
   .hero-title { letter-spacing: -1px; }
-  .section { padding: 80px 20px; }
-  .leistungen-header { grid-template-columns: 1fr; gap: 24px; }
-  .features-grid { grid-template-columns: 1fr; }
+  .section { padding: 80px 0; }
+  .section-inner { padding: 0 20px; }
+  .leistungen-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
   .phase { grid-template-columns: 80px 1fr; gap: 20px; padding: 28px 24px; }
   .phase-tags { display: none; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .testimonials-header { flex-direction: column; gap: 20px; align-items: flex-start; }
   .kontakt-inner { grid-template-columns: 1fr; gap: 40px; }
+  .footer-inner { padding: 0 20px; }
   .footer-top { grid-template-columns: 1fr; gap: 40px; }
   .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
   .form-row { grid-template-columns: 1fr; }
-  .cta-band { padding: 60px 20px; }
+  .cta-inner { padding: 0 20px; }
   .hero-stats-row { grid-template-columns: 1fr; }
+  .innung-bar > div { padding: 0 20px !important; gap: 20px !important; }
+  .innung-sep { display: none; }
 }
+
+  /* ── FEATURE CARD IMAGES ── */
+  .feature-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border);
+    filter: brightness(0.82) saturate(0.85);
+    transition: filter 0.3s, transform 0.3s;
+  }
+  .feature-card:hover .feature-img {
+    filter: brightness(0.95) saturate(1);
+  }
+  .feature-card {
+    padding: 0;
+    overflow: hidden;
+  }
+  .feature-card-body {
+    padding: 20px 22px 24px;
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
+  <div class="nav-inner">
   <a href="#" class="nav-logo">
     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjYiIGZpbGw9IiMxYTFhMWEiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxIi8+PHRleHQgeD0iNTAiIHk9IjU3IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Mb2dvPC90ZXh0Pjwvc3ZnPg==" alt="Logo" class="nav-logo-img">
     <span class="nav-logo-name">ELEKTRO<span>DANIELS</span></span>
@@ -909,13 +980,14 @@ footer {
     </a>
     <a href="#kontakt" class="btn-nav">Anfrage stellen</a>
   </div>
+  </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-blob1"></div>
   <div class="hero-blob2"></div>
-
+  <div class="hero-inner">
   <div class="hero-tag">
     <span class="hero-tag-dot"></span>
     Mitglied der Düsseldorfer Elektroinnung &nbsp;·&nbsp; <strong>5,0 ★ Google</strong>
@@ -956,6 +1028,7 @@ footer {
         <div class="hero-stat-label">MyHammer</div>
       </div>
     </div>
+  </div>
   </div>
 </div>
 
@@ -1018,12 +1091,12 @@ footer {
     <span class="ticker-item">SIEDLE</span>
     <span class="ticker-item red">·</span>
     <span class="ticker-item">Plejd</span>
-  </div>
+  </div></div>
 </div>
 
 <!-- LEISTUNGEN -->
 <section class="section leistungen" id="leistungen">
-  <div class="leistungen-header reveal">
+  <div class="section-inner"><div class="leistungen-header reveal">
     <div>
       <div class="section-eyebrow">Was wir tun</div>
       <h2 class="section-title">Unsere<br><span class="dim">Leistungen</span></h2>
@@ -1091,12 +1164,12 @@ footer {
         <div class="feature-tags"><span class="ftag">LED</span><span class="ftag">Dotlux</span><span class="ftag">E-Auto</span></div>
       </div>
     </div>
-  </div>
+  </div></div>
   </section>
 
 <!-- ÜBER UNS – 3-Phasen-Stil -->
 <section class="section ueber" id="ueber">
-  <div class="ueber-header reveal">
+  <div class="section-inner"><div class="ueber-header reveal">
     <div class="section-eyebrow">Unser Ansatz</div>
     <h2 class="section-title">Handwerk mit<br><span class="dim">Haltung</span></h2>
     <p class="section-body" style="margin:0 auto;text-align:center">Als inhabergeführter Elektro- und Ingenieurbetrieb und Mitglied der Düsseldorfer Elektroinnung stehen wir für Verlässlichkeit, Transparenz und erstklassige Ausführung.</p>
@@ -1131,7 +1204,7 @@ footer {
 
 <!-- BEWERTUNGEN -->
 <section class="section testimonials" id="bewertungen">
-  <div class="testimonials-header reveal">
+  <div class="section-inner"><div class="testimonials-header reveal">
     <div>
       <div class="section-eyebrow">Kundenstimmen</div>
       <h2 class="section-title">Was unsere<br><span class="dim">Kunden sagen</span></h2>
@@ -1171,7 +1244,7 @@ footer {
 
 <!-- KONTAKT -->
 <section class="section kontakt" id="kontakt">
-  <div class="kontakt-inner">
+  <div class="section-inner"><div class="kontakt-inner">
     <div>
       <div class="section-eyebrow reveal">Kontakt</div>
       <h2 class="section-title reveal">Jetzt<br><span class="dim">anfragen</span></h2>
@@ -1224,16 +1297,17 @@ footer {
   </div>
 </section>
 
+
 <!-- CTA BAND -->
 <div class="cta-band">
-  <h2>Bereit für Ihren nächsten Auftrag?</h2>
+  <div class="cta-inner"><h2>Bereit für Ihren nächsten Auftrag?</h2>
   <p>Rufen Sie uns an oder stellen Sie direkt eine unverbindliche Anfrage.</p>
-  <a href="#kontakt" class="btn-white">Jetzt anfragen</a>
+  <a href="#kontakt" class="btn-white">Jetzt anfragen</a></div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
+  <div class="footer-inner"><div class="footer-top">
     <div class="footer-brand">
       <a href="#" class="footer-logo">
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjYiIGZpbGw9IiMxYTFhMWEiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxIi8+PHRleHQgeD0iNTAiIHk9IjU3IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Mb2dvPC90ZXh0Pjwvc3ZnPg==" alt="Logo">
@@ -1272,7 +1346,7 @@ footer {
       <a href="https://www.elektrodaniels.de/blank">Datenschutz</a>
     </div>
   </div>
-</footer>
+</div></footer>
 
 <script>
   // Scroll reveal

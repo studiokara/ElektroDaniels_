@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elektrodaniels & Meyer GbR – Elektriker Düsseldorf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0c0c0c;
+  --bg2:       #111111;
+  --bg3:       #161616;
+  --border:    rgba(255,255,255,0.08);
+  --border2:   rgba(255,255,255,0.14);
+  --red:       #e8180e;
+  --red2:      #c01009;
+  --white:     #ffffff;
+  --off-white: #e8e8e4;
+  --muted:     rgba(255,255,255,0.45);
+  --muted2:    rgba(255,255,255,0.22);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 48px;
+  height: 68px;
+  background: rgba(12,12,12,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+}
+.nav-logo-img {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  object-fit: contain;
+}
+.nav-logo-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--white);
+}
+.nav-logo-name span { color: var(--red); }
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+}
+.nav-center a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 400;
+  padding: 6px 16px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  letter-spacing: 0.1px;
+}
+.nav-center a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-phone {
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: color 0.2s;
+}
+.nav-phone:hover { color: var(--white); }
+.nav-phone svg {
+  width: 14px; height: 14px;
+  stroke: var(--red);
+  fill: none; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.btn-nav {
+  background: var(--red);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.2px;
+}
+.btn-nav:hover { background: var(--red2); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  padding: 68px 48px 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background glow blobs */
+.hero-blob1 {
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,24,14,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-blob2 {
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,24,14,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Top tag */
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border2);
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
+  padding: 6px 14px 6px 8px;
+  font-size: 12.5px;
+  color: var(--muted);
+  width: fit-content;
+  margin: 60px auto 36px;
+  letter-spacing: 0.2px;
+}
+.hero-tag-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  display: inline-block;
+}
+.hero-tag strong { color: var(--off-white); font-weight: 500; }
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(52px, 7.5vw, 112px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -2px;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto 28px;
+  color: var(--white);
+}
+.hero-title .red { color: var(--red); }
+.hero-title .dim { color: var(--muted2); }
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--muted);
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto 44px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 80px;
+}
+
+.btn-primary {
+  background: var(--red);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 13px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 0 0 0 rgba(232,24,14,0);
+}
+.btn-primary:hover {
+  background: var(--red2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(232,24,14,0.35);
+}
+
+.btn-ghost {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 13px 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border2);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s, border-color 0.2s, transform 0.15s;
+}
+.btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.3); transform: translateY(-2px); }
+.btn-ghost svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Hero image / dashboard mockup */
+.hero-visual {
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid var(--border2);
+  border-radius: 16px 16px 0 0;
+  background: var(--bg2);
+  overflow: hidden;
+  position: relative;
+}
+.hero-visual-bar {
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-dot { width: 10px; height: 10px; border-radius: 50%; background: #333; }
+.hero-dot:first-child { background: #ff5f57; }
+.hero-dot:nth-child(2) { background: #ffbd2e; }
+.hero-dot:nth-child(3) { background: #28ca42; }
+
+.hero-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.hero-stat {
+  background: var(--bg2);
+  padding: 32px 36px;
+  text-align: center;
+}
+.hero-stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.hero-stat-num span { color: var(--red); }
+.hero-stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* ── TICKER ── */
+.ticker {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--bg2);
+}
+.ticker-track {
+  display: inline-flex;
+  animation: ticker 60s linear infinite;
+}
+.ticker-item {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 32px;
+}
+.ticker-item.red { color: var(--red); }
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── SECTION BASE ── */
+.section {
+  padding: 120px 48px;
+  position: relative;
+}
+
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: var(--red);
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 4vw, 60px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  color: var(--white);
+  margin-bottom: 18px;
+}
+.section-title .dim { color: var(--muted2); }
+
+.section-body {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.75;
+}
+
+/* ── LEISTUNGEN ── */
+.leistungen { background: var(--bg); }
+.leistungen-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 64px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.feature-card {
+  background: var(--bg2);
+  padding: 40px 36px;
+  position: relative;
+  transition: background 0.25s;
+  cursor: default;
+}
+.feature-card:hover { background: var(--bg3); }
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.feature-card:hover::before { opacity: 1; }
+
+.feature-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--red);
+  margin-bottom: 20px;
+}
+.feature-icon {
+  width: 42px; height: 42px;
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  background: rgba(232,24,14,0.08);
+}
+.feature-icon svg {
+  width: 20px; height: 20px;
+  stroke: var(--red); fill: none;
+  stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+}
+.feature-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+.feature-text {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 18px;
+}
+.ftag {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid var(--border2);
+  color: var(--muted2);
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* ── ÜBER UNS – 3 PHASEN Entropy-style ── */
+.ueber { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.ueber-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 80px;
+}
+.ueber-header .section-eyebrow { justify-content: center; }
+.ueber-header .section-eyebrow::before { display: none; }
+
+.phases {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.phase {
+  background: var(--bg2);
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 48px;
+  transition: background 0.25s;
+  cursor: default;
+}
+.phase:hover { background: var(--bg3); }
+.phase-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--muted2);
+  text-transform: uppercase;
+}
+.phase-num strong {
+  display: block;
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--red);
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-top: 4px;
+}
+.phase-content {}
+.phase-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+.phase-text {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 480px;
+}
+.phase-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.phase-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 4px 10px;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials { background: var(--bg); }
+.testimonials-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 56px;
+}
+.rating-block {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.rating-big {
+  font-family: 'Syne', sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  color: var(--red);
+  line-height: 1;
+  letter-spacing: -2px;
+}
+.rating-info {
+  font-size: 13px;
+  color: var(--muted);
+}
+.rating-info strong {
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.tcard {
+  background: var(--bg2);
+  padding: 36px 32px;
+  transition: background 0.2s;
+}
+.tcard:hover { background: var(--bg3); }
+
+.tcard-quote {
+  width: 28px; height: 20px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+.tcard-quote path { fill: var(--red); }
+
+.tcard-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 18px;
+}
+.tstar {
+  width: 12px; height: 12px;
+  background: var(--red);
+  clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+}
+.tcard-text {
+  font-size: 14.5px;
+  color: var(--off-white);
+  line-height: 1.65;
+  margin-bottom: 28px;
+  font-style: italic;
+  opacity: 0.8;
+}
+.tcard-author {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.2px;
+}
+.tcard-role {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ── KONTAKT ── */
+.kontakt { background: var(--bg2); border-top: 1px solid var(--border); }
+.kontakt-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.kontakt-info {
+  margin-top: 44px;
+}
+.kinfo-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.kinfo-row:first-child { border-top: 1px solid var(--border); }
+.kinfo-icon {
+  width: 36px; height: 36px;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  background: rgba(232,24,14,0.08);
+}
+.kinfo-icon svg {
+  width: 16px; height: 16px;
+  stroke: var(--red); fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.kinfo-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.kinfo-val {
+  font-size: 15px;
+  color: var(--off-white);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a.kinfo-val:hover { color: var(--red); }
+
+/* Form */
+.form-group { margin-bottom: 18px; }
+.form-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--white);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color: var(--red);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--muted2); }
+.form-textarea { resize: vertical; min-height: 110px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-select option { background: #1a1a1a; }
+
+/* ── CTA BAND ── */
+.cta-band {
+  background: var(--red);
+  padding: 80px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+}
+.cta-band h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 4vw, 60px);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -1.5px;
+  margin-bottom: 14px;
+  position: relative;
+}
+.cta-band p {
+  color: rgba(255,255,255,0.75);
+  font-size: 16px;
+  margin-bottom: 36px;
+  position: relative;
+}
+.btn-white {
+  background: var(--white);
+  color: var(--red);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.15s, box-shadow 0.2s;
+  position: relative;
+  font-family: 'Syne', sans-serif;
+  letter-spacing: -0.2px;
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 60px 48px 40px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+.footer-brand {}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  text-decoration: none;
+}
+.footer-logo img {
+  width: 24px; height: 24px;
+  border-radius: 4px;
+  object-fit: contain;
+}
+.footer-logo-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+}
+.footer-logo-name span { color: var(--red); }
+.footer-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 280px;
+  margin-bottom: 24px;
+}
+.footer-socials {
+  display: flex;
+  gap: 10px;
+}
+.social-btn {
+  width: 34px; height: 34px;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  font-family: 'Syne', sans-serif;
+}
+.social-btn:hover { border-color: var(--red); color: var(--red); background: rgba(232,24,14,0.08); }
+
+.footer-col h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 20px;
+}
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--white); }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-copy {
+  font-size: 12.5px;
+  color: var(--muted2);
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-size: 12.5px;
+  color: var(--muted2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-center { display: none; }
+  .nav-phone { display: none; }
+  .hero { padding: 68px 20px 0; }
+  .hero-title { letter-spacing: -1px; }
+  .section { padding: 80px 20px; }
+  .leistungen-header { grid-template-columns: 1fr; gap: 24px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .phase { grid-template-columns: 80px 1fr; gap: 20px; padding: 28px 24px; }
+  .phase-tags { display: none; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonials-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+  .kontakt-inner { grid-template-columns: 1fr; gap: 40px; }
+  .footer-top { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+  .form-row { grid-template-columns: 1fr; }
+  .cta-band { padding: 60px 20px; }
+  .hero-stats-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjYiIGZpbGw9IiMxYTFhMWEiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxIi8+PHRleHQgeD0iNTAiIHk9IjU3IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Mb2dvPC90ZXh0Pjwvc3ZnPg==" alt="Logo" class="nav-logo-img">
+    <span class="nav-logo-name">ELEKTRO<span>DANIELS</span></span>
+  </a>
+  <ul class="nav-center">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#ueber">Über uns</a></li>
+    <li><a href="#bewertungen">Bewertungen</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:+4915229438832" class="nav-phone">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012.18 0h3a2 2 0 012 1.72c.128.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.572 2.81.7A2 2 0 0122 16.92z"/></svg>
+      01522 943 8832
+    </a>
+    <a href="#kontakt" class="btn-nav">Anfrage stellen</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+
+  <div class="hero-tag">
+    <span class="hero-tag-dot"></span>
+    Mitglied der Düsseldorfer Elektroinnung &nbsp;·&nbsp; <strong>5,0 ★ Google</strong>
+  </div>
+
+  <h1 class="hero-title reveal">
+    Ihr Elektro­betrieb<br>
+    <span class="dim">für</span> Düsseldorf<br>
+    <span class="red">&amp; Umgebung</span>
+  </h1>
+
+  <p class="hero-sub reveal">Elektro- und Ingenieurbetrieb für Privat, Gewerbe und Industrie. Sauber ausgeführt, normgerecht abgenommen.</p>
+
+  <div class="hero-actions reveal">
+    <a href="#kontakt" class="btn-primary">Kostenlos anfragen</a>
+    <a href="tel:+4915229438832" class="btn-ghost">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012.18 0h3a2 2 0 012 1.72c.128.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.572 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Jetzt anrufen
+    </a>
+  </div>
+
+  <div class="hero-visual reveal">
+    <div class="hero-visual-bar">
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+    </div>
+    <div class="hero-stats-row">
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span>5,0</span> ★</div>
+        <div class="hero-stat-label">Google Bewertung</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">42<span>+</span></div>
+        <div class="hero-stat-label">Rezensionen</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span>4,9</span></div>
+        <div class="hero-stat-label">MyHammer</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">E-Check</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Smart Home</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Photovoltaik</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">KNX</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">DGUV 3</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">E-Ladestation</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Brandschutz</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Videosprechanlagen</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">LED Umbau</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Wärmepumpe</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Altbausanierung</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Lichtplanung</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">SIEDLE</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Plejd</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">E-Check</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Smart Home</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Photovoltaik</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">KNX</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">DGUV 3</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">E-Ladestation</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Brandschutz</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Videosprechanlagen</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">LED Umbau</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Wärmepumpe</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Altbausanierung</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Lichtplanung</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">SIEDLE</span>
+    <span class="ticker-item red">·</span>
+    <span class="ticker-item">Plejd</span>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section class="section leistungen" id="leistungen">
+  <div class="leistungen-header reveal">
+    <div>
+      <div class="section-eyebrow">Was wir tun</div>
+      <h2 class="section-title">Unsere<br><span class="dim">Leistungen</span></h2>
+    </div>
+    <p class="section-body">Von der Einzelreparatur bis zur Komplettinstallation – wir übernehmen Verantwortung für jede Anlage, die wir berühren.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-num">01</div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <div class="feature-title">Elektroinstallation</div>
+      <p class="feature-text">Neu- und Umbauten, Verkabelung, Sicherungsanlagen, Steckdosen & Schalter – normgerecht und sauber ausgeführt.</p>
+      <div class="feature-tags"><span class="ftag">VDE 0100-600</span><span class="ftag">Neuverkabelung</span><span class="ftag">Altbau</span></div>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:.07s">
+      <div class="feature-num">02</div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <div class="feature-title">Smart Home & KNX</div>
+      <p class="feature-text">Intelligente Gebäudetechnik, Funkschalter, Rolladensteuerung und Plejd-Systeme – Ihr Zuhause auf dem neuesten Stand.</p>
+      <div class="feature-tags"><span class="ftag">KNX</span><span class="ftag">Plejd</span><span class="ftag">Rolladen</span></div>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:.14s">
+      <div class="feature-num">03</div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
+      <div class="feature-title">Photovoltaik & Energie</div>
+      <p class="feature-text">Anschluss von PV-Anlagen, Energiespeichern und Wärmepumpen – zukunftssicher und fachgerecht installiert.</p>
+      <div class="feature-tags"><span class="ftag">PV</span><span class="ftag">Speicher</span><span class="ftag">Wärmepumpe</span></div>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:.21s">
+      <div class="feature-num">04</div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="feature-title">E-Check & Prüfung</div>
+      <p class="feature-text">VDE-konforme Prüfungen, DGUV 3, Gerätemessungen – für Ihre Sicherheit und rechtliche Absicherung.</p>
+      <div class="feature-tags"><span class="ftag">E-Check</span><span class="ftag">DGUV 3</span><span class="ftag">VDE</span></div>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:.28s">
+      <div class="feature-num">05</div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div>
+      <div class="feature-title">Sprechanlagen & Sicherheit</div>
+      <p class="feature-text">SIEDLE-Anlagen, Videosprechanlagen, Klingelanlagen, Rauchmelder und Brandschutzabschottung.</p>
+      <div class="feature-tags"><span class="ftag">SIEDLE</span><span class="ftag">Brandschutz</span><span class="ftag">Video</span></div>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:.35s">
+      <div class="feature-num">06</div>
+      <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="7" cy="18" r="2"/><path d="M9 18h12M5 18H1M17 6h4M1 6h12M3 12h18"/><circle cx="17" cy="6" r="2"/><circle cx="11" cy="12" r="2"/></svg></div>
+      <div class="feature-title">Licht & Ladeinfrastruktur</div>
+      <p class="feature-text">LED-Umbau, Dotlux, Lichtplanung & Beratung. Plus E-Ladestationen für Privat und Gewerbe.</p>
+      <div class="feature-tags"><span class="ftag">LED</span><span class="ftag">Dotlux</span><span class="ftag">E-Auto</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ÜBER UNS – 3-Phasen-Stil -->
+<section class="section ueber" id="ueber">
+  <div class="ueber-header reveal">
+    <div class="section-eyebrow">Unser Ansatz</div>
+    <h2 class="section-title">Handwerk mit<br><span class="dim">Haltung</span></h2>
+    <p class="section-body" style="margin:0 auto;text-align:center">Als inhabergeführter Elektro- und Ingenieurbetrieb und Mitglied der Düsseldorfer Elektroinnung stehen wir für Verlässlichkeit, Transparenz und erstklassige Ausführung.</p>
+  </div>
+  <div class="phases">
+    <div class="phase reveal">
+      <div class="phase-num">Phase<strong>01</strong></div>
+      <div class="phase-content">
+        <div class="phase-title">Erstkontakt & Aufnahme</div>
+        <p class="phase-text">Sie schildern uns Ihr Anliegen – telefonisch, per E-Mail oder über das Kontaktformular. Wir melden uns innerhalb von 24 Stunden mit einem klaren, unverbindlichen Angebot.</p>
+      </div>
+      <div class="phase-tags"><span class="phase-tag">Kostenlos</span><span class="phase-tag">24h Antwort</span></div>
+    </div>
+    <div class="phase reveal" style="transition-delay:.08s">
+      <div class="phase-num">Phase<strong>02</strong></div>
+      <div class="phase-content">
+        <div class="phase-title">Planung & Vorbereitung</div>
+        <p class="phase-text">Wir planen den Auftrag sorgfältig, beschaffen alle nötigen Materialien und terminieren den Einsatz so, dass er Ihren Alltag so wenig wie möglich stört.</p>
+      </div>
+      <div class="phase-tags"><span class="phase-tag">Termingenau</span><span class="phase-tag">Transparent</span></div>
+    </div>
+    <div class="phase reveal" style="transition-delay:.16s">
+      <div class="phase-num">Phase<strong>03</strong></div>
+      <div class="phase-content">
+        <div class="phase-title">Ausführung & Abnahme</div>
+        <p class="phase-text">Saubere Arbeit, vollständige Dokumentation und normgerechte Abnahme. Sie bekommen alles schriftlich – kein Rätselraten bei der Rechnung.</p>
+      </div>
+      <div class="phase-tags"><span class="phase-tag">VDE-konform</span><span class="phase-tag">Dokumentiert</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEWERTUNGEN -->
+<section class="section testimonials" id="bewertungen">
+  <div class="testimonials-header reveal">
+    <div>
+      <div class="section-eyebrow">Kundenstimmen</div>
+      <h2 class="section-title">Was unsere<br><span class="dim">Kunden sagen</span></h2>
+    </div>
+    <div class="rating-block">
+      <div class="rating-big">5,0</div>
+      <div class="rating-info">
+        <strong>42 Bewertungen</strong>
+        Google · MyHammer
+      </div>
+    </div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="tcard reveal">
+      <svg class="tcard-quote" viewBox="0 0 28 20"><path d="M0 20V12.5C0 5.6 4.667 1.333 14 0l1.75 2.8C11.083 4.133 8.75 6.533 8.75 10H14V20H0zm14 0V12.5C14 5.6 18.667 1.333 28 0l1.75 2.8C25.083 4.133 22.75 6.533 22.75 10H28V20H14z"/></svg>
+      <div class="tcard-stars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div>
+      <p class="tcard-text">„Sehr kompetente und zuverlässige Durchführung von Eric & Co. Gerne nochmal."</p>
+      <div class="tcard-author">Luis</div>
+      <div class="tcard-role">Google · vor 3 Monaten</div>
+    </div>
+    <div class="tcard reveal" style="transition-delay:.08s">
+      <svg class="tcard-quote" viewBox="0 0 28 20"><path d="M0 20V12.5C0 5.6 4.667 1.333 14 0l1.75 2.8C11.083 4.133 8.75 6.533 8.75 10H14V20H0zm14 0V12.5C14 5.6 18.667 1.333 28 0l1.75 2.8C25.083 4.133 22.75 6.533 22.75 10H28V20H14z"/></svg>
+      <div class="tcard-stars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div>
+      <p class="tcard-text">„Wir hatten einen Stromausfall und uns wurde noch am selben Tag geholfen. Sehr kompetent und professionell."</p>
+      <div class="tcard-author">Sina Pleyo</div>
+      <div class="tcard-role">Google · vor 3 Monaten</div>
+    </div>
+    <div class="tcard reveal" style="transition-delay:.16s">
+      <svg class="tcard-quote" viewBox="0 0 28 20"><path d="M0 20V12.5C0 5.6 4.667 1.333 14 0l1.75 2.8C11.083 4.133 8.75 6.533 8.75 10H14V20H0zm14 0V12.5C14 5.6 18.667 1.333 28 0l1.75 2.8C25.083 4.133 22.75 6.533 22.75 10H28V20H14z"/></svg>
+      <div class="tcard-stars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div>
+      <p class="tcard-text">„Wirklich sehr zufrieden. Schnell, günstig und hochwertige Ausführung – vielen Dank nochmals."</p>
+      <div class="tcard-author">Bernd Friedrich</div>
+      <div class="tcard-role">Google · vor 5 Monaten</div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="section kontakt" id="kontakt">
+  <div class="kontakt-inner">
+    <div>
+      <div class="section-eyebrow reveal">Kontakt</div>
+      <h2 class="section-title reveal">Jetzt<br><span class="dim">anfragen</span></h2>
+      <p class="section-body reveal">Schildern Sie uns Ihr Anliegen – wir melden uns innerhalb von 24 Stunden mit einem unverbindlichen Angebot zurück.</p>
+      <div class="kontakt-info reveal">
+        <div class="kinfo-row">
+          <div class="kinfo-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="kinfo-label">Adresse</div><span class="kinfo-val">Reisholzer Straße 43, 40231 Düsseldorf</span></div>
+        </div>
+        <div class="kinfo-row">
+          <div class="kinfo-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012.18 0h3a2 2 0 012 1.72c.128.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.572 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><div class="kinfo-label">Telefon</div><a href="tel:+4915229438832" class="kinfo-val">01522 943 8832</a></div>
+        </div>
+        <div class="kinfo-row">
+          <div class="kinfo-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="kinfo-label">E-Mail</div><a href="mailto:info@elektrodaniels.de" class="kinfo-val">info@elektrodaniels.de</a></div>
+        </div>
+        <div class="kinfo-row">
+          <div class="kinfo-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="kinfo-label">Öffnungszeiten</div><span class="kinfo-val">Mo–Fr · 08:00 – 17:00 Uhr</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Vorname</label><input type="text" class="form-input" placeholder="Max" required></div>
+          <div class="form-group"><label class="form-label">Nachname</label><input type="text" class="form-input" placeholder="Mustermann" required></div>
+        </div>
+        <div class="form-group"><label class="form-label">Telefon</label><input type="tel" class="form-input" placeholder="+49 211 ..."></div>
+        <div class="form-group"><label class="form-label">E-Mail</label><input type="email" class="form-input" placeholder="max@beispiel.de" required></div>
+        <div class="form-group">
+          <label class="form-label">Leistung</label>
+          <select class="form-select">
+            <option value="">Bitte auswählen</option>
+            <option>Elektroinstallation / Neubau</option>
+            <option>Reparatur & Fehlersuche</option>
+            <option>Smart Home / KNX</option>
+            <option>E-Check / DGUV 3</option>
+            <option>Photovoltaik & Speicher</option>
+            <option>Ladestation (E-Auto)</option>
+            <option>Sprechanlage / Sicherheit</option>
+            <option>Sonstiges</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Ihr Anliegen</label><textarea class="form-textarea" placeholder="Kurze Beschreibung des Auftrags ..."></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%;border:none;cursor:pointer;font-family:inherit;font-size:14px;border-radius:8px;padding:14px">Anfrage absenden</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Bereit für Ihren nächsten Auftrag?</h2>
+  <p>Rufen Sie uns an oder stellen Sie direkt eine unverbindliche Anfrage.</p>
+  <a href="#kontakt" class="btn-white">Jetzt anfragen</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjYiIGZpbGw9IiMxYTFhMWEiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxIi8+PHRleHQgeD0iNTAiIHk9IjU3IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Mb2dvPC90ZXh0Pjwvc3ZnPg==" alt="Logo">
+        <span class="footer-logo-name">ELEKTRO<span>DANIELS</span> & MEYER</span>
+      </a>
+      <p class="footer-desc">Ihr inhabergeführter Elektro- und Ingenieurbetrieb in Düsseldorf. Mitglied der Düsseldorfer Elektroinnung.</p>
+      <div class="footer-socials">
+        <a href="https://www.youtube.com/@elektrodaniels" target="_blank" class="social-btn">YT</a>
+        <a href="https://www.instagram.com/elektrodaniels/" target="_blank" class="social-btn">IG</a>
+        <a href="https://www.tiktok.com/@elektrodaniels" target="_blank" class="social-btn">TT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Leistungen</h4>
+      <a href="#leistungen">Elektroinstallation</a>
+      <a href="#leistungen">Smart Home & KNX</a>
+      <a href="#leistungen">Photovoltaik</a>
+      <a href="#leistungen">E-Check & Prüfung</a>
+      <a href="#leistungen">Sprechanlagen</a>
+      <a href="#leistungen">LED & Ladestation</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <a href="tel:+4915229438832">01522 943 8832</a>
+      <a href="mailto:info@elektrodaniels.de">info@elektrodaniels.de</a>
+      <a href="#">Reisholzer Str. 43, Düsseldorf</a>
+      <a href="#">Mo–Fr: 08:00–17:00</a>
+      <a href="https://www.elektrodaniels.de/impressum" target="_blank">Impressum</a>
+      <a href="https://www.elektrodaniels.de/blank" target="_blank">Datenschutz</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Elektrodaniels & Meyer GbR · Alle Rechte vorbehalten</span>
+    <div class="footer-links">
+      <a href="https://www.elektrodaniels.de/impressum">Impressum</a>
+      <a href="https://www.elektrodaniels.de/blank">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Nav blur on scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.borderBottomColor =
+      window.scrollY > 60 ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.08)';
+  });
+
+  // Form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = '✓ Anfrage gesendet';
+    btn.style.background = '#1a6e1a';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
